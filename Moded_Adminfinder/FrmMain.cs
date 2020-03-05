@@ -1,4 +1,4 @@
-﻿using RestSharp;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,9 +33,8 @@ namespace Moded_Adminfinder
                     {
                         Boolean isAdmin = FindAdmins(txt_url.Text, ap);
                         if (isAdmin)
-                            txt_logs.Invoke((MethodInvoker)delegate { txt_logs.AppendText("Founded " + "http://" + txt_url.Text + "/" + "ap" + txt_url.Text); });
+                            txt_logs.Invoke((MethodInvoker)delegate { txt_logs.AppendText("Founded " + "http://" + txt_url.Text+ ap + Environment.NewLine); });
                     });
-                btn_run.Invoke((MethodInvoker)delegate { this.btn_run.Enabled = true; });
             });
             t.Start();
         }
@@ -44,7 +43,7 @@ namespace Moded_Adminfinder
         {
             try
             {
-                var clinet = new RestClient("http://www." + url + "/" + adminPath);
+                var clinet = new RestClient("http://www." + url + adminPath);
                 var req = new RestRequest(Method.GET);
 
                 var resp = clinet.Get(req);
